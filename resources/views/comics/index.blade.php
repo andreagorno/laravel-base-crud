@@ -21,8 +21,20 @@
                     <td>
                         <a href="{{ route("comics.show", $item->id) }}" class="btn btn-success">SHOW</a>
                     </td>
-                    <td>EDIT</td>
-                    <td>DELETE</td>
+                    <td>
+                        <a href="{{ route("comics.edit", $item->id) }}" class="btn btn-primary">EDIT</a>
+                    </td>
+                    <td>
+                        <form 
+                            action="{{ route('comics.destroy', $item->id) }}" 
+                            method="POST"
+                            onSubmit = "return confirm('Vuoi cancellare definitivamente {{ $item->title }}?')"
+                            >
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" class="btn btn-danger" value="DELETE">
+                        </form>
+                    </td>
                 </tr> 
             @endforeach
         </tbody>

@@ -1,7 +1,14 @@
 @extends('layouts.main')
 
 @section('content')
+    @if (session('message'))
+        <div class="alert alert-success mb-4">
+            {{ session('message') }}
+        </div>
+    @endif
+
     <h1>{{ $comic->title }}</h1>
+    <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-primary">Modifica</a>
 
     <div class="row my-4">
         <div class="col-2">
